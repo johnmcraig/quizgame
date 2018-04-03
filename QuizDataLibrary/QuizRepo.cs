@@ -37,12 +37,15 @@ namespace QuizDataLibrary
 
         public void EditQuiz(Quiz editQuiz)
         {
+            _dbContext.Entry(editQuiz).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _dbContext.SaveChanges();
 
         }
 
         public void DeleteQuiz(Quiz deleteQuiz)
         {
-
+            _dbContext.Quizzes.Remove(deleteQuiz);
+            _dbContext.SaveChanges();
         }
     }      
 }
