@@ -15,10 +15,11 @@ namespace QuizDataLibrary
             _dbContext = dbContext;
         }
 
-        public void AddAnswer(Answer newAnswer)
+        public Answer AddAnswer(Answer newAnswer)
         {
             _dbContext.Answers.Add(newAnswer);
             _dbContext.SaveChanges();
+            return newAnswer;
         }
 
         public void DeleteAnswer(Answer deleteAnswer)

@@ -7,7 +7,7 @@ namespace QuizDataLibrary
     public interface IAnswer
     {
 
-        void AddAnswer(Answer newAnswer);
+        Answer AddAnswer(Answer newAnswer);
 
         Answer GetById(int id);
 

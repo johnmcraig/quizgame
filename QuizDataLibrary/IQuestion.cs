@@ -6,7 +6,7 @@ namespace QuizDataLibrary
 {
     public interface IQuestion
     {
-        void Add(Question newQuestion);
+        Question AddQuestion(Question newQuestion);
 
         void DeleteQuestion(Question deleteQuestion);
 

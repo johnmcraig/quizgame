@@ -14,23 +14,16 @@ namespace QuizDataLibrary
             _dbContext = dbContext;
         }
 
-        public void AddQuiz(Quiz addQuiz)
+        public Quiz AddQuiz(Quiz newQuiz)
         {
-            _dbContext.Quizzes.Add(addQuiz);
+            _dbContext.Quizzes.Add(newQuiz);
             _dbContext.SaveChanges();
-        }
-
-        public IEnumerable<Quiz> GetAll()
-        {
-            return _dbContext.Quizzes
-                .ToList();
+            return newQuiz;
         }
 
         public Quiz GetById(int id)
         {
-            return GetAll()
-                .Where(i => i.QuizId == id)
-                .FirstOrDefault();
+            return _dbContext.Quizzes.Find(id);    
         }
 
         public void EditQuiz(Quiz editQuiz)

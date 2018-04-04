@@ -6,14 +6,15 @@ namespace QuizDataLibrary
 {
     public interface IQuiz
     {
-        IEnumerable<Quiz> GetAll();
         
         Quiz GetById(int id);
 
         List<Quiz> List();
 
-        void AddQuiz(Quiz addQuiz);
+        Quiz AddQuiz(Quiz newQuiz);
+
         void EditQuiz(Quiz editQuiz);
+
         void DeleteQuiz(Quiz deleteQuiz);
     }
 }
