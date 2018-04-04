@@ -5,13 +5,11 @@ using System.Text;
 
 namespace QuizDataLibrary
 {
-    class QuizRepo : IQuiz
+    class QuizRepoEf : IQuiz
     {
         private readonly QuizTakerDbContext _dbContext;
 
-        public List<Answer> Answers { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public QuizRepo(QuizTakerDbContext dbContext)
+        public QuizRepoEf(QuizTakerDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -46,6 +44,13 @@ namespace QuizDataLibrary
         {
             _dbContext.Quizzes.Remove(deleteQuiz);
             _dbContext.SaveChanges();
+        }
+
+
+        public List<Quiz> List()
+        {
+            return _dbContext.Quizzes
+                .ToList();
         }
     }      
 }

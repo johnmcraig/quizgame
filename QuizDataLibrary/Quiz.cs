@@ -12,6 +12,7 @@ namespace QuizDataLibrary
             Questions = new List<Question>();
             Answers = new List<Answer>();
         }
+
         public int QuizId { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }

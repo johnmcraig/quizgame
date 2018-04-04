@@ -1,0 +1,42 @@
+﻿@model QuizDataLibrary.Answer
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Answer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AnswerId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Response)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Response)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QuestionId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCorrect)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsCorrect)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

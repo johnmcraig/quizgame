@@ -9,8 +9,8 @@ namespace QuizDataLibrary
         IEnumerable<Quiz> GetAll();
         
         Quiz GetById(int id);
-        
-        List<Answer> Answers { get; set; }
+
+        List<Quiz> List();
 
         void AddQuiz(Quiz addQuiz);
         void EditQuiz(Quiz editQuiz);

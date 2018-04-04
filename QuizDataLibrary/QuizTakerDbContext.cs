@@ -11,7 +11,7 @@ namespace QuizDataLibrary
     public class QuizTakerDbContext : DbContext
     {
       public QuizTakerDbContext(DbContextOptions<QuizTakerDbContext> options)
-      : base(options)
+        : base(options)
       {
       }
 
