@@ -24,7 +24,8 @@ namespace QuizTaker.Controllers
         // GET: Answer
         public ActionResult Index()
         {
-            return View();
+            var answer = _answerRepo.List();
+            return View(_answerRepo.List());
         }
 
         // GET: Answer/Details/5
