@@ -9,7 +9,7 @@ namespace QuizDataLibrary
         
         Quiz GetById(int id);
 
-        List<Quiz> List();
+        List<Quiz> ListAllQuizzes();
 
         Quiz AddQuiz(Quiz newQuiz);
 

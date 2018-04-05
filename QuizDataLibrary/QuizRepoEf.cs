@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace QuizDataLibrary
 {
-    class QuizRepoEf : IQuiz
+    public class QuizRepoEf : IQuiz
     {
         private readonly QuizTakerDbContext _dbContext;
 
@@ -28,7 +29,7 @@ namespace QuizDataLibrary
 
         public void EditQuiz(Quiz editQuiz)
         {
-            _dbContext.Entry(editQuiz).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _dbContext.Entry(editQuiz).State = EntityState.Modified;
             _dbContext.SaveChanges();
 
         }
@@ -40,7 +41,7 @@ namespace QuizDataLibrary
         }
 
 
-        public List<Quiz> List()
+        public List<Quiz> ListAllQuizzes()
         {
             return _dbContext.Quizzes
                 .ToList();

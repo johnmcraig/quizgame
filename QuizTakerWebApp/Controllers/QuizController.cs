@@ -4,66 +4,93 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QuizDataLibrary;
 
 namespace QuizTaker.Controllers
 {
     public class QuizController : Controller
     {
+        //private readonly IAnswer _answerRepo;
+        private readonly IQuiz _quizRepo;
+        //private readonly IQuestion _questionRepo;
+
+        public QuizController(IAnswer answerRepo, IQuiz quizRepo, IQuestion questionRepo)
+        {
+            //_answerRepo = answerRepo;
+            _quizRepo = quizRepo;
+            //_questionRepo = questionRepo;
+        }
+
         // GET: Quiz
         public ActionResult Index()
         {
-            return View();
+            var quiz = _quizRepo.ListAllQuizzes();
+            return View(_quizRepo.ListAllQuizzes());
         }
 
         // GET: Quiz/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(_quizRepo.GetById(id));
         }
 
         // GET: Quiz/Create
         public ActionResult Create()
         {
-            return View();
+            Quiz newQuiz = new Quiz
+            {
+                PublishDate = DateTime.Now 
+            };
+
+            return View(newQuiz);
         }
 
         // POST: Quiz/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Quiz newQuiz, IFormCollection collection)
         {
             try
             {
                 // TODO: Add insert logic here
+                
+                if (ModelState.IsValid)
+                {
+                    _quizRepo.AddQuiz(newQuiz);
+                }
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                Console.WriteLine(ex);
+                return View(newQuiz);
             }
         }
 
         // GET: Quiz/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(_quizRepo.GetById(id));
         }
 
         // POST: Quiz/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Quiz editQuiz ,IFormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
+                _quizRepo.EditQuiz(editQuiz);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                Console.WriteLine(ex);
+
+                return View(editQuiz);
             }
         }
 
@@ -76,16 +103,19 @@ namespace QuizTaker.Controllers
         // POST: Quiz/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Quiz deleteQuiz ,IFormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
+                _quizRepo.DeleteQuiz(deleteQuiz);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
+
                 return View();
             }
         }

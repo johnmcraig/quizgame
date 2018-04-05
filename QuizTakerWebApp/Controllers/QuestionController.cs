@@ -4,15 +4,28 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QuizDataLibrary;
 
 namespace QuizTaker.Controllers
 {
     public class QuestionController : Controller
     {
+        //private readonly IAnswer _answerRepo;
+        //private readonly IQuiz _quizRepo;
+        private readonly IQuestion _questionRepo;
+
+        public QuestionController(IAnswer answerRepo, IQuiz quizRepo, IQuestion questionRepo)
+        {
+            //_answerRepo = answerRepo;
+            //_quizRepo = quizRepo;
+            _questionRepo = questionRepo;
+        }
+
         // GET: Question
         public ActionResult Index()
         {
-            return View();
+            var question = _questionRepo.List();
+            return View(_questionRepo.List());
         }
 
         // GET: Question/Details/5
