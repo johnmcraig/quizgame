@@ -20,7 +20,7 @@ namespace QuizTaker.Controllers
         // GET: Quiz
         public ActionResult Index()
         {
-            var quiz = _quizRepo.ListAllQuizzes();
+            //var quiz = _quizRepo.ListAllQuizzes();
             return View(_quizRepo.ListAllQuizzes());
         }
 

@@ -6,22 +6,33 @@
 
     <div class="row">
 
+        <h3>See All the Quizzes and their Questions</h3>
+
+        <p>Follow these links to see all current posted quizzes</p>
+        <ul>
+            <li><a asp-area="" asp-controller="Quiz" asp-action="Index">A list of all Quizzes</a></li>
+            <li><a asp-area="" asp-controller="Questions" asp-action="Index">A list of all Questions</a></li>
+            <li><a asp-area="" asp-controller="Answers" asp-action="Index">A list of all Answers</a></li>
+        </ul>
+
+        <br />
+
         <h3>Create A Quiz</h3>
 
         <ul>
-            <li><a asp-area="" asp-controller="Quiz" asp-action="Index">Create a Quiz Here</a></li>
+            <li><a asp-area="" asp-controller="Quiz" asp-action="Create">Create a Quiz Here</a></li>
         </ul>
 
         <h3>Then make Questions for the Quizzes</h3>
 
         <ul>
-            <li><a asp-area="" asp-controller="Question" asp-action="Index">Makes Questions</a></li>
+            <li><a asp-area="" asp-controller="Question" asp-action="Create">Makes Questions</a></li>
         </ul>
 
         <h3>Add Answers to Those Questions</h3>
 
         <ul>
-            <li><a asp-area="" asp-controller="Answer" asp-action="Index">Add Answers</a></li>
+            <li><a asp-area="" asp-controller="Answer" asp-action="Create">Add Answers</a></li>
         </ul>
 
     </div>
