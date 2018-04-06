@@ -1,4 +1,4 @@
-﻿@model QuizDataLibrary.Quiz
+﻿@model IEnumerable<QuizDataLibrary.Quiz>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,37 +6,48 @@
 
 <h2>Index</h2>
 
-<div>
-    <h4>Quiz</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.QuizId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.QuizId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PublishDate)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.QuizId }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuizId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PublishDate)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.QuizId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.QuizId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.QuizId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

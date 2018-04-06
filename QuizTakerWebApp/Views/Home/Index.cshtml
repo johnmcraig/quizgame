@@ -2,6 +2,11 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div class="jumbotron">
+    <h2 style="text-align:center">Welcome To Quiz Taker</h2>
+    <p style="text-align:center">A Web App That You Can make Quizzes!</p>
+</div>
+
 <div class="container">
 
     <div class="row">
@@ -9,10 +14,11 @@
         <h3>See All the Quizzes and their Questions</h3>
 
         <p>Follow these links to see all current posted quizzes</p>
+
         <ul>
             <li><a asp-area="" asp-controller="Quiz" asp-action="Index">A list of all Quizzes</a></li>
-            <li><a asp-area="" asp-controller="Questions" asp-action="Index">A list of all Questions</a></li>
-            <li><a asp-area="" asp-controller="Answers" asp-action="Index">A list of all Answers</a></li>
+            <li><a asp-area="" asp-controller="Question" asp-action="Index">A list of all Questions</a></li>
+            <li><a asp-area="" asp-controller="Answer" asp-action="Index">A list of all Answers</a></li>
         </ul>
 
         <br />
