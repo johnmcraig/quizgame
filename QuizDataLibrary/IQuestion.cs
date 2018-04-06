@@ -12,7 +12,7 @@ namespace QuizDataLibrary
 
         void EditQuestion(Question editQuestion);
 
-        List<Question> List();
+        List<Question> ListAllQuestions();
 
         Question GetById(int id);
     }

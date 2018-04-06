@@ -10,15 +10,11 @@ namespace QuizTaker.Controllers
 {
     public class QuizController : Controller
     {
-        //private readonly IAnswer _answerRepo;
         private readonly IQuiz _quizRepo;
-        //private readonly IQuestion _questionRepo;
 
-        public QuizController(IAnswer answerRepo, IQuiz quizRepo, IQuestion questionRepo)
+        public QuizController(IQuiz quizRepo)
         {
-            //_answerRepo = answerRepo;
             _quizRepo = quizRepo;
-            //_questionRepo = questionRepo;
         }
 
         // GET: Quiz
@@ -52,8 +48,7 @@ namespace QuizTaker.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-                
+                // TODO: Add insert logic here 
                 if (ModelState.IsValid)
                 {
                     _quizRepo.AddQuiz(newQuiz);
@@ -77,11 +72,10 @@ namespace QuizTaker.Controllers
         // POST: Quiz/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Quiz editQuiz ,IFormCollection collection)
+        public ActionResult Edit(int id, Quiz editQuiz, IFormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
                 _quizRepo.EditQuiz(editQuiz);
 
                 return RedirectToAction(nameof(Index));
@@ -103,7 +97,7 @@ namespace QuizTaker.Controllers
         // POST: Quiz/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Quiz deleteQuiz ,IFormCollection collection)
+        public ActionResult Delete(int id, Quiz deleteQuiz, IFormCollection collection)
         {
             try
             {

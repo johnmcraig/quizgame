@@ -10,50 +10,55 @@ namespace QuizTaker.Controllers
 {
     public class QuestionController : Controller
     {
-        //private readonly IAnswer _answerRepo;
-        //private readonly IQuiz _quizRepo;
         private readonly IQuestion _questionRepo;
 
-        public QuestionController(IAnswer answerRepo, IQuiz quizRepo, IQuestion questionRepo)
+        public QuestionController(IQuestion questionRepo)
         {
-            //_answerRepo = answerRepo;
-            //_quizRepo = quizRepo;
             _questionRepo = questionRepo;
         }
 
         // GET: Question
         public ActionResult Index()
         {
-            var question = _questionRepo.List();
-            return View(_questionRepo.List());
+            var question = _questionRepo.ListAllQuestions();
+            return View(_questionRepo.ListAllQuestions());
         }
 
         // GET: Question/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(_questionRepo.GetById(id));
         }
 
         // GET: Question/Create
         public ActionResult Create()
         {
-            return View();
+            Question newQuestion = new Question
+            {
+                
+            };
+
+            return View(newQuestion);
         }
 
         // POST: Question/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Question newQuestion, IFormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
 
+                if (ModelState.IsValid)
+                {
+                   _questionRepo.AddQuestion(newQuestion);
+                }
+                
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View(newQuestion);
             }
         }
 
@@ -66,38 +71,38 @@ namespace QuizTaker.Controllers
         // POST: Question/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Question editQuestion, IFormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+                _questionRepo.EditQuestion(editQuestion);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View(editQuestion);
             }
         }
 
         // GET: Question/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(_questionRepo.GetById(id));
         }
 
         // POST: Question/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Question deleteQuestion, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                _questionRepo.DeleteQuestion(deleteQuestion);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }

@@ -10,7 +10,7 @@ namespace QuizDataLibrary
     public class Answer
     {
         public int AnswerId { get; set; }
-        public string Response { get; set; }
+        public string Answers { get; set; }
         public int QuestionId { get; set; }
         public bool IsCorrect { get; set; }
 

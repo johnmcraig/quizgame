@@ -16,10 +16,10 @@
                     @Html.DisplayNameFor(model => model.QuestionId)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.QuizId)
+                    @Html.DisplayNameFor(model => model.QuestionId)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Content)
+                    @Html.DisplayNameFor(model => model.Questions)
                 </th>
             <th></th>
         </tr>
@@ -31,10 +31,10 @@
                 @Html.DisplayFor(modelItem => item.QuestionId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.QuizId)
+                @Html.DisplayFor(modelItem => item.QuestionId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Content)
+                @Html.DisplayFor(modelItem => item.Questions)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.QuestionId }) |

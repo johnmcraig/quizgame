@@ -22,11 +22,6 @@ namespace QuizDataLibrary
             return newQuiz;
         }
 
-        public Quiz GetById(int id)
-        {
-            return _dbContext.Quizzes.Find(id);    
-        }
-
         public void EditQuiz(Quiz editQuiz)
         {
             _dbContext.Entry(editQuiz).State = EntityState.Modified;
@@ -40,11 +35,18 @@ namespace QuizDataLibrary
             _dbContext.SaveChanges();
         }
 
-
         public List<Quiz> ListAllQuizzes()
         {
             return _dbContext.Quizzes
                 .ToList();
         }
+
+        public Quiz GetById(int id)
+        {
+            return ListAllQuizzes()
+                .Where(i => i.QuizId == id)
+                .FirstOrDefault();
+        }
+
     }      
 }

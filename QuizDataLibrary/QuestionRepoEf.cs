@@ -33,15 +33,18 @@ namespace QuizDataLibrary
             _dbContext.Entry(editQuestion).State = EntityState.Modified;
         }
 
-        public Question GetById(int id)
-        {
-            return _dbContext.Questions.Find();
-        }
-
-        public List<Question> List()
+        public List<Question> ListAllQuestions()
         {
             return _dbContext.Questions
                 .ToList();
         }
+
+        public Question GetById(int id)
+        {
+            return ListAllQuestions()
+                .Where(q => q.QuestionId == id)
+                .FirstOrDefault();
+        }
+      
     }
 }

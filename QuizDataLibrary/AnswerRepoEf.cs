@@ -34,15 +34,17 @@ namespace QuizDataLibrary
             _dbContext.SaveChanges();
         }
 
-        public Answer GetById(int id)
+        public List<Answer> ListAllAnswers()
         {
-            return _dbContext.Answers.Find(id);
-        }
-
-        public List<Answer> List()
-        { 
             return _dbContext.Answers
                 .ToList();
         }
+
+        public Answer GetById(int id)
+        {
+            return ListAllAnswers()
+                .Where(a => a.AnswerId == id)
+                .FirstOrDefault();
+        }  
     }
 }

@@ -11,7 +11,7 @@ namespace QuizDataLibrary
 
         Answer GetById(int id);
 
-        List<Answer> List();
+        List<Answer> ListAllAnswers();
 
         void DeleteAnswer(Answer deleteAnswer);
 
