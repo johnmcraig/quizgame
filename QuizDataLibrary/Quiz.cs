@@ -10,7 +10,7 @@ namespace QuizDataLibrary
         public Quiz()
         {
             Questions = new List<Question>();
-            Answers = new List<Answer>();
+            //Answers = new List<Answer>();
         }
 
         public int QuizId { get; set; }
@@ -18,7 +18,7 @@ namespace QuizDataLibrary
         public string Author { get; set; }
         public DateTime PublishDate { get; set; }
         public List<Question> Questions { get; set; }
-        public List<Answer> Answers { get; set; }
+        //public List<Answer> Answers { get; set; }
         
     }
 }

@@ -35,7 +35,7 @@ namespace QuizTaker.Controllers
         {
             Answer newAnswer = new Answer
             {
-                
+
             };
 
             return View(newAnswer);
@@ -44,11 +44,10 @@ namespace QuizTaker.Controllers
         // POST: Answer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Answer newAnswer,IFormCollection collection)
+        public ActionResult Create(Answer newAnswer, IFormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
                     _answerRepo.AddAnswer(newAnswer);
@@ -58,7 +57,6 @@ namespace QuizTaker.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
                 return View(newAnswer);
             }
         }

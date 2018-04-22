@@ -38,6 +38,8 @@ namespace QuizDataLibrary
         public List<Quiz> ListAllQuizzes()
         {
             return _dbContext.Quizzes
+                .Include(q => q.Questions)
+                .ThenInclude(a => a.Answers)
                 .ToList();
         }
 
