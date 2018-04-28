@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuizDataLibrary;
 
 namespace QuizTaker.Controllers
 {
+    [Authorize]
     public class QuestionController : Controller
     {
         private readonly IQuestion _questionRepo;
@@ -35,7 +37,6 @@ namespace QuizTaker.Controllers
         {
             Question newQuestion = new Question
             {
-                
             };
 
             return View(newQuestion);

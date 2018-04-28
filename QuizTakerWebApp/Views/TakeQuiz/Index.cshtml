@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Quiz Game</h2>
+
+<div class="row">
+    <div class="container">
+        <div class="col-md-8">
+            
+            <div class="panel panel-default">
+                <div class="panel-heading game-panel-heading">
+                    <p id="quest-num"></p>
+                </div>
+
+                <div class="panel-body game-panel-body">
+                    <h4 id="quest-content"></h4>
+                    <ul id="quest-answers" class="list-group"></ul>
+                    <p><span id="wrongs-holder" class="well well-sm">5</span> Tries Left</p>
+                </div>
+            </div>
+            @*<div>
+                <span id="quizid-holder" class="hidden">@ViewBag.QuizId</span>
+                <button class="btn btn-sm" type="button" id="last-question-button">Last</button>
+                <button class="btn btn-sm" type="button" id="next-question-button">Next</button>
+            </div>*@
+        </div>
+    </div>
+</div>
