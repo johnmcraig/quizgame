@@ -13,9 +13,13 @@ namespace QuizTaker.Controllers
     public class QuizGameController : Controller
     {
         private readonly IQuiz _quizRepo;
+        private readonly IAnswer _answerRepo;
+        private readonly IQuestion _questionRepo;
 
-        public QuizGameController(IQuiz quizRepo)
+        public QuizGameController(IQuiz quizRepo, IAnswer answerRepo, IQuestion questionRepo)
         {
+            _questionRepo = questionRepo;
+            _answerRepo = answerRepo;
             _quizRepo = quizRepo;
         }
 

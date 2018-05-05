@@ -33,3 +33,37 @@
         display: none;
     }
 }
+
+.answer-item {
+    font-size: 16px;
+}
+
+    .answer-item:hover {
+        background-color: #f7f7f7;
+        color: grey;
+        cursor: pointer;
+    }
+
+
+#question-content {
+    background-color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#answer-result-container {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.correct {
+    color: green;
+}
+
+.wrong {
+    color: red;
+}
+
+.game-btn {
+    margin-right: 20px;
+}

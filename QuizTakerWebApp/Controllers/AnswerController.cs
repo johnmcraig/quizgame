@@ -33,10 +33,7 @@ namespace QuizTaker.Controllers
         // GET: Answer/Create
         public ActionResult Create()
         {
-            Answer newAnswer = new Answer
-            {
-
-            };
+            Answer newAnswer = new Answer();
 
             return View(newAnswer);
         }

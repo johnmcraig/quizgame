@@ -4,7 +4,7 @@
 
 <h2>Quiz Game</h2>
 
-<span id="quizGameId" class="hidden"> </span>
+<span id="quizGameId" class="hidden"></span>
 
 <div id="question-content" class="well"></div>
 
@@ -12,30 +12,14 @@
 
 <div id="answer-result-contianer" class="container"></div>
 
-@*<div class="row">
-        <div class="container">
-            <div class="col-md-8">
+<br />
 
-                <div class="panel panel-default">
-                    <div class="panel-heading game-panel-heading">
-                        <p id="quizId></p>
-                    </div>
+<button id="previous-button" class="btn btn-sm btn-sm game-btn">Previous</button>
+<button id="next-button" class="btn btn-sm btn-sm game-btn">Next</button>
 
-                    <div class="panel-body game-panel-body">
-                        <h4 id="question-content"></h4>
-                        <ul id="answers-container" class="list-group"></ul>
-                        <p><span id="tries-holder" class="well well-sm">5</span> Tries Left</p>
-                    </div>
-                </div>
-            <div>
+<hr />
+@Html.ActionLink("Back Home", "Index", "Home")
 
-            <span id="quizId-holder" class="hidden">@ViewBag.QuizId</span>
-            <button class="btn btn-sm" type="button" id="last-question-button">Last</button>
-            <button class="btn btn-sm" type="button" id="next-question-button">Next</button>
-        </div>
-            </div>
-        </div>
-    </div>*@
 
 @section Scripts {
     <script src="~/js/site.js"></script>

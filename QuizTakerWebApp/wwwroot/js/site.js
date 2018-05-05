@@ -1,6 +1,8 @@
 ﻿var answersContainer = document.getElementById("answers-container"),
     questionContent = document.getElementById("question-content"),
-    answerResultContainer = document.getElementById("answer-result-container");
+    answerResultContainer = document.getElementById("answer-result-container"),
+    nextBtn = document.getElementById("next-button"),
+    previousBtn = document.getElementById("previous-button");
 
 
 var quizGame = {
@@ -13,7 +15,7 @@ $(document).ready(function () {
 
     var quizId = document.getElementById("quizGameId").innerText;
 
-    var path = "api/QuizGame/1" + quizId;
+    var path = "/api/QuizGame" + quizId;
 
     $.getJSON(path, function (data) {
         quizGame.questions.questions = data;
@@ -24,12 +26,17 @@ $(document).ready(function () {
 
 // Render out question and answers
 function renderQuestion() {
+
     questionContent.innerText = quizGame.questions.questions.questions[quizGame.current].questions;
+
     var count = 0;
+
     for (var answer in quizGame.questions.questions.questions[quizGame.current].answers) {
+
 
         var answerLi = document.createElement("li"),
             answerPosition = document.createElement("span");
+
 
         answerPosition.innerText = count++;
         answerPosition.classList.add("hidden");
@@ -65,3 +72,21 @@ $(document).on('click', ".answer-item", function (event) {
     answerResultContainer.innerText = result.toString().toUpperCase();
 
 });
+
+// Next button events 
+nextBtn.addEventListener("click", function () {
+    if (quizGame.current < quizGame.questions.length - 1) {
+        quizGame.current++;
+    }
+    clearElements();
+    renderQuestion();
+})
+
+// Previous button events
+previousBtn.addEventListener("click", function () {
+    if (quizGame.current > 0) {
+        quizGame.current--;
+    }
+    clearElements();
+    renderQuestion();
+})
