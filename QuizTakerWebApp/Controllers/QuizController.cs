@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuizDataLibrary;
 
 namespace QuizTaker.Controllers
 {
+    [Authorize]
     public class QuizController : Controller
     {
         private readonly IQuiz _quizRepo;
@@ -82,7 +84,6 @@ namespace QuizTaker.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
 
                 return View(editQuiz);
             }
@@ -91,7 +92,7 @@ namespace QuizTaker.Controllers
         // GET: Quiz/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(_quizRepo.GetById(id));
         }
 
         // POST: Quiz/Delete/5
@@ -102,7 +103,7 @@ namespace QuizTaker.Controllers
             try
             {
                 // TODO: Add delete logic here
-                _quizRepo.DeleteQuiz(deleteQuiz);
+                _quizRepo.DeleteQuiz(id);
 
                 return RedirectToAction(nameof(Index));
             }

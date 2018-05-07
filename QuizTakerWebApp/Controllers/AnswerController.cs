@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuizDataLibrary;
 
 namespace QuizTaker.Controllers
-{
+{   
+    [Authorize]
     public class AnswerController : Controller
     {
         private readonly IAnswer _answerRepo; 
@@ -61,7 +63,7 @@ namespace QuizTaker.Controllers
         // GET: Answer/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(_answerRepo.GetById(id));
         }
 
         // POST: Answer/Edit/5
@@ -84,7 +86,7 @@ namespace QuizTaker.Controllers
         // GET: Answer/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(_answerRepo.GetById(id));
         }
 
         // POST: Answer/Delete/5
@@ -95,7 +97,7 @@ namespace QuizTaker.Controllers
             try
             {
                 
-                _answerRepo.DeleteAnswer(deleteAnswer);
+                _answerRepo.DeleteAnswer(id);
 
                 return RedirectToAction(nameof(Index));
             }

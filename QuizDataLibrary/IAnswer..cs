@@ -13,7 +13,7 @@ namespace QuizDataLibrary
 
         List<Answer> ListAllAnswers();
 
-        void DeleteAnswer(Answer deleteAnswer);
+        void DeleteAnswer(int id); //Answer deleteAnswer
 
         void EditAnswer(Answer editAnswer);
 

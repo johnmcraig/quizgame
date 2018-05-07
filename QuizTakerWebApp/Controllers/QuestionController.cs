@@ -35,9 +35,7 @@ namespace QuizTaker.Controllers
         // GET: Question/Create
         public ActionResult Create()
         {
-            Question newQuestion = new Question
-            {
-            };
+            Question newQuestion = new Question();
 
             return View(newQuestion);
         }
@@ -66,7 +64,7 @@ namespace QuizTaker.Controllers
         // GET: Question/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(_questionRepo.GetById(id));
         }
 
         // POST: Question/Edit/5
@@ -99,7 +97,7 @@ namespace QuizTaker.Controllers
         {
             try
             {
-                _questionRepo.DeleteQuestion(deleteQuestion);
+                _questionRepo.DeleteQuestion(id);
 
                 return RedirectToAction(nameof(Index));
             }

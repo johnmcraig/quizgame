@@ -30,6 +30,7 @@ namespace QuizTaker.Controllers
             return new string[] { "value1", "value2" };
         }
 
+
         // GET: api/QuizGame/5
         [HttpGet("{id}", Name = "Get")]
         public Quiz Get(int id)

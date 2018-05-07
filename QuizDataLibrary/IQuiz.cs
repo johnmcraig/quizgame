@@ -15,6 +15,6 @@ namespace QuizDataLibrary
 
         void EditQuiz(Quiz editQuiz);
 
-        void DeleteQuiz(Quiz deleteQuiz);
+        void DeleteQuiz(int id);
     }
 }

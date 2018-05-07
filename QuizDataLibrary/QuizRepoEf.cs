@@ -26,11 +26,11 @@ namespace QuizDataLibrary
         {
             _dbContext.Entry(editQuiz).State = EntityState.Modified;
             _dbContext.SaveChanges();
-
         }
 
-        public void DeleteQuiz(Quiz deleteQuiz)
+        public void DeleteQuiz(int id)
         {
+            var deleteQuiz = _dbContext.Quizzes.FirstOrDefault(i => i.QuizId == id);
             _dbContext.Quizzes.Remove(deleteQuiz);
             _dbContext.SaveChanges();
         }

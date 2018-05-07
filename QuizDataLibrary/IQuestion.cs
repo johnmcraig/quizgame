@@ -8,7 +8,7 @@ namespace QuizDataLibrary
     {
         Question AddQuestion(Question newQuestion);
 
-        void DeleteQuestion(Question deleteQuestion);
+        void DeleteQuestion(int id);
 
         void EditQuestion(Question editQuestion);
 

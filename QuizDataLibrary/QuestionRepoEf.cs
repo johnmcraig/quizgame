@@ -22,8 +22,9 @@ namespace QuizDataLibrary
             return newQuestion;
         }
 
-        public void DeleteQuestion(Question deleteQuestion)
+        public void DeleteQuestion(int id)
         {
+            var deleteQuestion = _dbContext.Questions.FirstOrDefault(i => i.QuestionId == id);
             _dbContext.Questions.Remove(deleteQuestion);
             _dbContext.SaveChanges();
         }
@@ -31,6 +32,7 @@ namespace QuizDataLibrary
         public void EditQuestion(Question editQuestion)
         {
             _dbContext.Entry(editQuestion).State = EntityState.Modified;
+            _dbContext.SaveChanges();
         }
 
         public List<Question> ListAllQuestions()

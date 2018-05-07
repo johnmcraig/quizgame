@@ -22,8 +22,9 @@ namespace QuizDataLibrary
             return newAnswer;
         }
 
-        public void DeleteAnswer(Answer deleteAnswer)
+        public void DeleteAnswer(int id)
         {
+            var deleteAnswer = _dbContext.Answers.FirstOrDefault(i => i.AnswerId == id);
             _dbContext.Answers.Remove(deleteAnswer);
             _dbContext.SaveChanges();
         }

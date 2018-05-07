@@ -7,15 +7,15 @@
 
 var quizGame = {
     questions: {},
-    current: 0,
-}
+    current: 0
+};
 
 // Get questions from API on page load
 $(document).ready(function () {
 
     var quizId = document.getElementById("quizGameId").innerText;
 
-    var path = "/api/QuizGame" + quizId;
+    var path = "/api/QuizGame/1" + quizId;
 
     $.getJSON(path, function (data) {
         quizGame.questions.questions = data;
@@ -46,8 +46,8 @@ function renderQuestion() {
 
         answerLi.appendChild(answerPosition);
         answersContainer.appendChild(answerLi);
-    };
-};
+    }
+}
 
 // Clear elements on click
 function clearElements() {
@@ -80,7 +80,7 @@ nextBtn.addEventListener("click", function () {
     }
     clearElements();
     renderQuestion();
-})
+});
 
 // Previous button events
 previousBtn.addEventListener("click", function () {
@@ -89,4 +89,4 @@ previousBtn.addEventListener("click", function () {
     }
     clearElements();
     renderQuestion();
-})
+});

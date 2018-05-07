@@ -16,6 +16,7 @@ namespace QuizDataLibrary
         public int QuizId { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
+        [DataType(DataType.Date)]
         public DateTime PublishDate { get; set; }
         public List<Question> Questions { get; set; }
         //public List<Answer> Answers { get; set; }
