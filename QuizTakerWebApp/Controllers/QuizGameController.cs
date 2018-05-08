@@ -15,27 +15,36 @@ namespace QuizTaker.Controllers
         private readonly IQuiz _quizRepo;
         private readonly IAnswer _answerRepo;
         private readonly IQuestion _questionRepo;
+        private readonly QuizTakerDbContext _dbContext;
 
-        public QuizGameController(IQuiz quizRepo, IAnswer answerRepo, IQuestion questionRepo)
+        public QuizGameController(IQuiz quizRepo, IAnswer answerRepo, IQuestion questionRepo, QuizTakerDbContext dbContext)
         {
             _questionRepo = questionRepo;
             _answerRepo = answerRepo;
             _quizRepo = quizRepo;
+            _dbContext = dbContext;
         }
 
         // GET: api/QuizGame
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult GetQuizzes(int id)  //was IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            var quizzes = _dbContext.Quizzes.ToList();
+            var questions = _dbContext.Questions.ToList();
+            var answers = _dbContext.Answers.ToList();
+
+            return Ok(quizzes);
         }
 
 
         // GET: api/QuizGame/5
         [HttpGet("{id}", Name = "Get")]
-        public Quiz Get(int id)
+        public IActionResult GetQuiz(int id) //was Quiz Get(int id)
         {
-            return _quizRepo.GetById(id);
+            var quiz = _dbContext.Quizzes.FirstOrDefault(q => q.QuizId == id);
+
+            return Ok(quiz);
+            //return _quizRepo.GetById(id);
         }
         
         // POST: api/QuizGame

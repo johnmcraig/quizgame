@@ -12,7 +12,7 @@ namespace QuizDataLibrary
         public int QuizId { get; set; }
         [JsonIgnore]
         public Quiz Quiz { get; set; } //link back to the questions to refere to the questions are attached to
-        public string Questions { get; set; }
+        public string Content { get; set; }
 
         public List<Answer> Answers { get; set; }
     }

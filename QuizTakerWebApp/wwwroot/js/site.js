@@ -15,7 +15,7 @@ $(document).ready(function () {
 
     var quizId = document.getElementById("quizGameId").innerText;
 
-    var path = "/api/QuizGame/1" + quizId;
+    var path = "/api/QuizGame" + quizId;
 
     $.getJSON(path, function (data) {
         quizGame.questions.questions = data;
@@ -27,11 +27,11 @@ $(document).ready(function () {
 // Render out question and answers
 function renderQuestion() {
 
-    questionContent.innerText = quizGame.questions.questions.questions[quizGame.current].questions;
+    questionContent.innerText = quizGame.questions.questions[quizGame.current].questions;
 
     var count = 0;
 
-    for (var answer in quizGame.questions.questions.questions[quizGame.current].answers) {
+    for (var answer in quizGame.questions.questions[quizGame.current].answers) {
 
 
         var answerLi = document.createElement("li"),
