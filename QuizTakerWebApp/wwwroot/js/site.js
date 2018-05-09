@@ -27,7 +27,7 @@ $(document).ready(function () {
 // Render out question and answers
 function renderQuestion() {
 
-    questionContent.innerText = quizGame.questions.questions[quizGame.current].questions;
+    questionContent.innerText = quizGame.questions.questions[quizGame.current].content;
 
     var count = 0;
 
@@ -42,7 +42,7 @@ function renderQuestion() {
         answerPosition.classList.add("hidden");
         answerLi.classList.add("list-group-item");
         answerLi.classList.add("answer-item");
-        answerLi.innerText = quizGame.questions.questions.questions[quizGame.current].answers[answer].content;
+        answerLi.innerText = quizGame.questions.questions[quizGame.current].answers[answer].content;
 
         answerLi.appendChild(answerPosition);
         answersContainer.appendChild(answerLi);
@@ -53,7 +53,7 @@ function renderQuestion() {
 function clearElements() {
     answersContainer.innerHTML = "";
     questionContent.innerText = "";
-    answerResulContainer.innerText = "";
+    answerResultContainer.innerText = "";
 }
 
 // On answer click events

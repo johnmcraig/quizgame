@@ -11,9 +11,10 @@ using System;
 namespace QuizDataLibrary.Migrations
 {
     [DbContext(typeof(QuizTakerDbContext))]
-    partial class QuizTakerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180509000347_Changed string to content")]
+    partial class Changedstringtocontent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
