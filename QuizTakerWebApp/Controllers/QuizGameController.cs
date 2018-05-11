@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QuizDataLibrary;
 
 namespace QuizTaker.Controllers
@@ -27,11 +28,11 @@ namespace QuizTaker.Controllers
 
         // GET: api/QuizGame
         [HttpGet]
-        public IActionResult GetQuizzes(int id)  //was IEnumerable<string> Get()
+        public async Task<IActionResult> GetQuizzes()  //was IEnumerable<string> Get()
         {
-            var quizzes = _dbContext.Quizzes.ToList();
-            var questions = _dbContext.Questions.ToList();
-            var answers = _dbContext.Answers.ToList();
+            var quizzes = await _dbContext.Quizzes.ToListAsync();
+            var questions = await _dbContext.Questions.ToListAsync();
+            var answers = await _dbContext.Answers.ToListAsync();
 
             return Ok(quizzes);
         }
@@ -39,9 +40,11 @@ namespace QuizTaker.Controllers
 
         // GET: api/QuizGame/5
         [HttpGet("{id}", Name = "Get")]
-        public IActionResult GetQuiz(int id) //was Quiz Get(int id)
+        public async Task<IActionResult> GetQuiz(int id) //was Quiz Get(int id)
         {
-            var quiz = _dbContext.Quizzes.FirstOrDefault(q => q.QuizId == id);
+            var quiz = await _dbContext.Quizzes.FirstOrDefaultAsync(q => q.QuizId == id);
+            var answer = await _dbContext.Answers.FirstOrDefaultAsync(a => a.AnswerId == id);
+            var question = await _dbContext.Questions.FirstOrDefaultAsync(x => x.QuestionId == id);
 
             return Ok(quiz);
             //return _quizRepo.GetById(id);

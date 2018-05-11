@@ -27,7 +27,7 @@ $(document).ready(function () {
 // Render out question and answers
 function renderQuestion() {
 
-    questionContent.innerText = quizGame.questions.questions[quizGame.current].content;
+    questionContent.innerText = quizGame.questions.questions.questions[quizGame.current].questions;
 
     var count = 0;
 
