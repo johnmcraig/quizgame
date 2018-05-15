@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using QuizDataLibrary;
 
 namespace QuizTaker.Controllers
@@ -14,27 +15,36 @@ namespace QuizTaker.Controllers
     public class QuizGameController : Controller
     {
         private readonly IQuiz _quizRepo;
-        private readonly IAnswer _answerRepo;
-        private readonly IQuestion _questionRepo;
         private readonly QuizTakerDbContext _dbContext;
+        private readonly ILogger<QuizGameController> _logger;
 
-        public QuizGameController(IQuiz quizRepo, IAnswer answerRepo, IQuestion questionRepo, QuizTakerDbContext dbContext)
+        public QuizGameController(IQuiz quizRepo, QuizTakerDbContext dbContext, ILogger<QuizGameController> logger)
         {
-            _questionRepo = questionRepo;
-            _answerRepo = answerRepo;
             _quizRepo = quizRepo;
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         // GET: api/QuizGame
         [HttpGet]
         public async Task<IActionResult> GetQuizzes()  //was IEnumerable<string> Get()
         {
-            var quizzes = await _dbContext.Quizzes.ToListAsync();
-            var questions = await _dbContext.Questions.ToListAsync();
-            var answers = await _dbContext.Answers.ToListAsync();
-
-            return Ok(quizzes);
+            var quizzes = await _dbContext.Quizzes
+                .Include(q => q.Questions)
+                .ThenInclude(a => a.Answers)
+                .ToListAsync();
+     
+            try
+            {
+                //return _quizRepo.ListAllQuizzes();
+                return Ok(_quizRepo.ListAllQuizzes());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to find quiz: {ex}");
+                return BadRequest("Failed to get quiz");
+            }
+            
         }
 
 
@@ -43,17 +53,34 @@ namespace QuizTaker.Controllers
         public async Task<IActionResult> GetQuiz(int id) //was Quiz Get(int id)
         {
             var quiz = await _dbContext.Quizzes.FirstOrDefaultAsync(q => q.QuizId == id);
-            var answer = await _dbContext.Answers.FirstOrDefaultAsync(a => a.AnswerId == id);
-            var question = await _dbContext.Questions.FirstOrDefaultAsync(x => x.QuestionId == id);
 
-            return Ok(quiz);
+            try
+            {
+                return Ok(quiz);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to find quiz: {ex}");
+                return BadRequest("Failed to get quiz");
+            }
+            
             //return _quizRepo.GetById(id);
         }
         
         // POST: api/QuizGame
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody]Quiz newQuiz)
         {
+            try
+            {
+                await _quizRepo.AddQuiz(newQuiz);
+                return Created($"api/QuizGame/{newQuiz.QuizId}", newQuiz);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to post a quiz: {ex}");
+                return BadRequest("Failed to post a quiz");
+            }
         }
         
         // PUT: api/QuizGame/5

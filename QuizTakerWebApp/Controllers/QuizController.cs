@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using QuizDataLibrary;
 
 namespace QuizTaker.Controllers
@@ -13,10 +14,12 @@ namespace QuizTaker.Controllers
     public class QuizController : Controller
     {
         private readonly IQuiz _quizRepo;
+        private readonly ILogger<QuizController> _logger;
 
-        public QuizController(IQuiz quizRepo)
+        public QuizController(IQuiz quizRepo, ILogger<QuizController> logger)
         {
             _quizRepo = quizRepo;
+            _logger = logger;
         }
 
         // GET: Quiz
@@ -60,7 +63,7 @@ namespace QuizTaker.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                _logger.LogError($"Failed to create a quiz: {ex}");
                 return View(newQuiz);
             }
         }
@@ -84,7 +87,7 @@ namespace QuizTaker.Controllers
             }
             catch (Exception ex)
             {
-
+                _logger.LogError($"Failed to edit a question: {ex}");
                 return View(editQuiz);
             }
         }
@@ -109,7 +112,7 @@ namespace QuizTaker.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                _logger.LogError($"Failed to delete a quiz: {ex}");
 
                 return View();
             }

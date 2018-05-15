@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace QuizDataLibrary
 {
@@ -11,7 +12,7 @@ namespace QuizDataLibrary
 
         List<Quiz> ListAllQuizzes();
 
-        Quiz AddQuiz(Quiz newQuiz);
+        Task<Quiz> AddQuiz(Quiz newQuiz);
 
         void EditQuiz(Quiz editQuiz);
 

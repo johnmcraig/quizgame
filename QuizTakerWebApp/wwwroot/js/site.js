@@ -4,9 +4,9 @@ $(document).ready(function () {
     var path = "/api/QuizGame/";
 
     $.getJSON(path, function (data) {
-        var quizzes = []
+        //var quizzes = [];
         console.log(data);
-        //renderQuestion();
+        renderQuestion();
     });
 });
 
@@ -52,22 +52,84 @@ quizId,
 <end summery>
 */
 
-function renderQuizTitle() {
+//function renderQuizTitle() {
 
-    var quizGame = [];
+//    var quizGame = [];
 
-    quizTitle.innerText = quizGame.title;
-}
+//    quizTitle.innerText = quizGame.title;
+//}
+
+//function renderQuestion() {
+
+
+//}
+
+
+var quizGame = {
+    questions: {},
+    current: 0
+};
 
 function renderQuestion() {
+    questionContent.innerText = quizGame.questions[quizGame.current].content;
+    var count = 0;
+    for (var answer in quizGame.questions[quizGame.current].answers) {
 
+        var answerLi = document.createElement("li"),
+            answerPosition = document.createElement("span");
 
+        answerPosition.innerText = count++;
+        answerPosition.classList.add("hidden");
+        answerLi.classList.add("list-group-item");
+        answerLi.classList.add("answer-item");
+        answerLi.innerText = quizGame.questions[game.current].Answers[answer].content;
+
+        answerLi.appendChild(answerPosition);
+        answersContainer.appendChild(answerLi);
+    };
+};
+
+// Next button events 
+nextBtn.addEventListener("click", function () {
+    if (quizGame.current < quizGame.questions.length - 1) {
+        quizGame.current++;
+    }
+    clearElements();
+    renderQuestion();
+})
+
+// Previous button events
+previousBtn.addEventListener("click", function () {
+    if (quizGame.current > 0) {
+        quizGame.current--;
+    }
+    clearElements();
+    renderQuestion();
+})
+
+// Clear elements function
+function clearElements() {
+    answersContainer.innerHTML = "";
+    questionContent.innerText = "";
+    answerResultContainer.innerText = "";
 }
 
-//var quizGame = {
-//    questions: {},
-//    current: 0
-//};
+// On answer click events
+$(document).on('click', ".answer-item", function (event) {
+    var result = quizGame.questions[quizGame.current].answers[event.currentTarget.getElementsByTagName("span")[0].innerText].isCorrect;
+
+    if (result) {
+        answerResultContainer.classList.remove("wrong");
+        answerResultContainer.classList.add("correct");
+    } else {
+        answerResultContainer.classList.remove("correct");
+        answerResultContainer.classList.add("wrong");
+    }
+
+    answerResultHolder.innerText = result.toString().toUpperCase();
+
+});
+
 
 
 

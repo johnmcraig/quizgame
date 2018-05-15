@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace QuizDataLibrary
 {
@@ -15,9 +16,9 @@ namespace QuizDataLibrary
             _dbContext = dbContext;
         }
 
-        public Quiz AddQuiz(Quiz newQuiz)
+        public async Task<Quiz> AddQuiz(Quiz newQuiz)
         {
-            _dbContext.Quizzes.Add(newQuiz);
+            await _dbContext.Quizzes.AddAsync(newQuiz);
             _dbContext.SaveChanges();
             return newQuiz;
         }
