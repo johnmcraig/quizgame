@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "QuizTakerSPA": {
+    "quiz-taker": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/QuizTakerSPA",
+            "outputPath": "dist/quiz-taker",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "QuizTakerSPA:build"
+            "browserTarget": "quiz-taker:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "QuizTakerSPA:build:production"
+              "browserTarget": "quiz-taker:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "QuizTakerSPA:build"
+            "browserTarget": "quiz-taker:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "QuizTakerSPA-e2e": {
+    "quiz-taker-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,7 +103,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "QuizTakerSPA:serve"
+            "devServerTarget": "quiz-taker:serve"
           }
         },
         "lint": {
@@ -118,5 +118,5 @@
       }
     }
   },
-  "defaultProject": "QuizTakerSPA"
+  "defaultProject": "quiz-taker"
 }
