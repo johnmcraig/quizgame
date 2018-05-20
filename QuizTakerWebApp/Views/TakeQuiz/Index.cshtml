@@ -4,22 +4,23 @@
 
 <h2>Quiz Game</h2>
 
-<span id="quiz-id" class="hidden"></span>
+<div class="wrapper row clearfix">
+    <div class="col-md-6 row clearfix">
+        <div>
+            <button type="button" id="nextQuestionBtn" class="btn btn-danger" style="margin-left: 2rem">Next Question</button>
+        </div>
 
-<div id="quiz-title" class="container"></div>
+        <div id="uploadedQuiz" class="questionText">
 
-<div id="question-content" class="well"></div>
+        </div>
 
-<ul id="answers-container" class="list-group"></ul>
+    </div>
 
-<div id="answer-result-contianer" class="container"></div>
+    <div id="answer-result" class="col-md-5">
 
-<br />
+    </div>
+</div>
 
-<button id="previous-button" class="btn btn-sm btn-sm game-btn">Previous</button>
-<button id="next-button" class="btn btn-sm btn-sm game-btn">Next</button>
-
-<hr />
 @Html.ActionLink("Back Home", "Index", "Home")
 
 

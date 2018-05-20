@@ -7,11 +7,10 @@ namespace QuizDataLibrary
 {
     public class Quiz
     {
-        public Quiz()
-        {
-            Questions = new List<Question>();
-            //Answers = new List<Answer>();
-        }
+        //public Quiz()
+        //{
+        //    Questions = new List<Question>();
+        //}
 
         public int QuizId { get; set; }
         public string Title { get; set; }
@@ -19,7 +18,5 @@ namespace QuizDataLibrary
         [DataType(DataType.Date)]
         public DateTime PublishDate { get; set; }
         public List<Question> Questions { get; set; }
-        //public List<Answer> Answers { get; set; }
-        
     }
 }

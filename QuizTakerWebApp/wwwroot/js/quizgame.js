@@ -1,26 +1,28 @@
 ﻿// Test JSON by returning objects into console output
 $(document).ready(function () {
-    $.getJSON("/api/QuizGame")
+    $.getJSON("/api/QuizGame");
     function Data(data) {
-        console.log(data)
+        console.log(data);
     } 
 });
-// The actual path as a uri then call AJAX then bind the data to a list element
-const uri = "/api/QuizGame/";
+
+// The actual path as an uri then call AJAX then bind the data to a list element
+const apiUri = "/api/QuizGame/";
 let quizzes = null;
 
 $(document).ready(function () {
-    $.getJSON(uri)
+    $.getJSON(apiUri)
         .done(function (data) {
             $.each(data, function (key, quiz) {
                 $('<li>', { text: formatQuiz(quiz) }).appendTo($('#quiz-title'));
             });
         });
 });
+
 // find quiz by id :: Url = api/QuizGame/id
 function find() {
     var id = $('#quizId').val();
-    $.getJSON(apiUrl + '/' + id)
+    $.getJSON(apiUri + '/' + id)
         .done(function (data) {
             $('#quiz-title').text(formatItem(data));
         })
