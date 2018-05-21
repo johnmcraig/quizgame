@@ -23,24 +23,24 @@ namespace QuizTaker.Controllers
         }
 
         // GET: Quiz
-        public ActionResult Index()
+        public IActionResult Index()
         {
             var quiz = _quizRepo.ListAllQuizzes();
             return View(_quizRepo.ListAllQuizzes());
         }
 
         // GET: Quiz/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View(_quizRepo.GetById(id));
         }
 
         // GET: Quiz/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             Quiz newQuiz = new Quiz
             {
-                PublishDate = DateTime.Now 
+                PublishDate = DateTime.Now
             };
 
             return View(newQuiz);
@@ -49,11 +49,10 @@ namespace QuizTaker.Controllers
         // POST: Quiz/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Quiz newQuiz, IFormCollection collection)
+        public IActionResult Create(Quiz newQuiz, IFormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here 
                 if (ModelState.IsValid)
                 {
                     _quizRepo.AddQuiz(newQuiz);
@@ -69,7 +68,7 @@ namespace QuizTaker.Controllers
         }
 
         // GET: Quiz/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             return View(_quizRepo.GetById(id));
         }
@@ -77,7 +76,7 @@ namespace QuizTaker.Controllers
         // POST: Quiz/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Quiz editQuiz, IFormCollection collection)
+        public IActionResult Edit(int id, Quiz editQuiz, IFormCollection collection)
         {
             try
             {
@@ -93,7 +92,7 @@ namespace QuizTaker.Controllers
         }
 
         // GET: Quiz/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             return View(_quizRepo.GetById(id));
         }
@@ -101,7 +100,7 @@ namespace QuizTaker.Controllers
         // POST: Quiz/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Quiz deleteQuiz, IFormCollection collection)
+        public IActionResult Delete(int id, Quiz deleteQuiz, IFormCollection collection)
         {
             try
             {

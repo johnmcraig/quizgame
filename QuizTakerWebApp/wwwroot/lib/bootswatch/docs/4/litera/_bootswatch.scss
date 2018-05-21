@@ -1,4 +1,4 @@
-// Litera 4.0.0
+// Litera 4.1.1
 // Bootswatch
 
 
@@ -178,6 +178,14 @@ table,
   @each $color, $value in $theme-colors {
     &-#{$color} {
       background-color: $value;
+    }
+  }
+
+  &-light {
+    &,
+    & a,
+    & .alert-link {
+      color: $body-color;
     }
   }
 }

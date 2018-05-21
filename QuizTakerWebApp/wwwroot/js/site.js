@@ -1,140 +1,106 @@
-﻿$(document).ready(function () {
-    var uploadedQuiz = document.getElementById("uploadedQuiz"),
-        nextQuestionBtn = document.getElementById("nextQuestionBtn"),
-        clickCount = 0,
-        currentQuestionId;
+﻿/* JSON Results from POSTMan
+-quizId,
+    -    title,
+    -    author,
+    -    publishDate,
+    -        questions:
+-            questionId + quizId,
+    -            content
+    - answers:
+-            answerId,
+    -            content,
+    -            isCorrect boolean(true, false)
+*/
 
-    var countClicks = function () {
-        clickCount++;
-    };
-
-    var clickAction = function clickAction(action) {
-        var answerSubmission = {
-            questionId: currentQuestionId,
-            answerId: action.currentTarget.id
-        };
-        countClicks();
-
-        $.getJSON("/api/QuizGame/", answerSubmission)
-            .done(function (data) {
-
-                var correct = data.isCorrect;
-                var incorrect = !data.isCorrect;
-                var chances = 3;
-
-                if (correct) {
-                    document.getElementById("answer-result").innerHTML =
-                        '<div class="panel panel-primary">' +
-                        '<div class="panel-heading">' +
-                        'Correct' +
-                        '</div>' +
-                        '<div class="panel-body right-answer">' +
-                        'Yeah! You got it.' +
-                        '</div>' +
-                        '</div>';
-                }
-                else if (incorrect && clickCount < 3) {
-                    document.getElementById("answer-result").innerHTML =
-                        '<div class="panel panel-danger">' +
-                        '<div class="panel-heading">' +
-                        'Incorrect' +
-                        '</div>' +
-                        '<div class="panel-body wrong-answer">' +
-                        'You were incorrect ' +
-                        clickCount + ' time(s), ' +
-                        'You have ' + (chances - clickCount) +
-                        ' chance(s) left.' +
-                        '</div>' +
-                        '</div>';
-                }
-                else {
-                    var answerBoxes = document.getElementsByClassName('answerBox');
-                    for (var i = 0; i < answerBoxes.length; i++) {
-                        answerBoxes[i].removeEventListener('click', clickAction);
-                    }
-
-                    document.getElementById("answer-result").innerHTML =
-                        '<div class="panel panel-danger gameOver">' +
-                        '<div class="panel-heading">' +
-                        'Incorrect' +
-                        '</div>' +
-                        '<div class="panel-body wrong-answer">' +
-                        'Sorry, you got 3 incorrect. Go to the next Question' +
-                        '</div>' +
-                        '</div>';
-                }
-            })
-            .fail(function (jqxhr, textStatus, error) {
-                alert("Could not load Quiz");
-            });
-    };
-
-    $.getJSON("/api/QuizGame", function (data) {
-        clickCount = 0;
-
-        var questionDiv = document.createElement('div');
-        document.getElementById('answer-result').innerHTML = '';
-
-        uploadedQuiz.innerHTML = "";
-        currentQuestionId = data.questionId;
-
-        uploadedQuiz.appendChild(questionDiv);
-        questionDiv.innerText = data.Content;
-
-        data.answers.forEach(function (val) {
-            var answerDiv = document.createElement('div');
-
-            answerDiv.innerText = val.Content;
-            answerDiv.id = val.answerId;
-            answerDiv.addEventListener('click', clickAction);
-            uploadedQuiz.appendChild(answerDiv);
-
-            answerDiv.className = 'answerBox';
-            answerDiv.addEventListener("mouseenter", function (event) {
-                event.target.style.color = "green";
-            });
-            answerDiv.addEventListener("mouseout", function (event) {
-                event.target.style.color = "black";
-            });
+var answersContainer = document.getElementById("answers-container"),
+    questionContent = document.getElementById("question-content"),
+    answerResultContainer = document.getElementById("answer-result-container"),
+    nextBtn = document.getElementById("next-button"),
+    previousBtn = document.getElementById("previous-button");
 
 
-            uploadedQuiz.className = 'questionText';
-        });
+var quizGame = {
+    questions: {},
+    current: 0
+};
+
+// Get questions from API on page load
+$(document).ready(function () {
+
+    var id = document.getElementById("quizGameId").innerText;
+
+    var path = "/api/QuizGame/" + id;
+
+    $.getJSON(path, function (data) {
+        quizGame.questions.questions = data;
+        renderQuestion();
     });
 
-    nextQuestionBtn.addEventListener('click', function () {
-        $.getJSON("/api/QuizGame", function (data) {
-            clickCount = 0;
+});
+
+// Render out question and answers
+function renderQuestion() {
+
+    questionContent.innerText = quizGame.questions.questions.questions[quizGame.current].questions;
+
+    var count = 0;
+
+    for (var answer in quizGame.questions.questions.questions[quizGame.current].answers) {
 
 
-            var questionDiv = document.createElement('div');
-            document.getElementById('answer-result').innerHTML = '';
-
-            uploadedQuiz.innerHTML = "";
-            currentQuestionId = data.questionId;
-
-            uploadedQuiz.appendChild(questionDiv);
-            questionDiv.innerText = data.Content;
-
-            data.answers.forEach(function (val) {
-                var answerDiv = document.createElement('div');
-
-                answerDiv.innerText = val.Content;
-                answerDiv.id = val.answerId;
-                answerDiv.addEventListener('click', clickAction);
-                uploadedQuiz.appendChild(answerDiv);
-
-                answerDiv.className = 'answerBox';
-                answerDiv.addEventListener("mouseenter", function (event) {
-                    event.target.style.color = "green";
-                });
-                answerDiv.addEventListener("mouseout", function (event) {
-                    event.target.style.color = "black";
-                });
+        var answerLi = document.createElement("li"),
+            answerPosition = document.createElement("span");
 
 
-                uploadedQuiz.className = 'questionText';
-            });
-        });
-    });
+        answerPosition.innerText = count++;
+        answerPosition.classList.add("hidden");
+        answerLi.classList.add("list-group-item");
+        answerLi.classList.add("answer-item");
+        answerLi.innerText = quizGame.questions.questions.questions[quizGame.current].answers[answer].content;
+
+        answerLi.appendChild(answerPosition);
+        answersContainer.appendChild(answerLi);
+    }
+}
+
+// Clear elements on click
+function clearElements() {
+    answersContainer.innerHTML = "";
+    questionContent.innerText = "";
+    answerResultContainer.innerText = "";
+}
+
+// On answer click events
+$(document).on('click', ".answer-item", function (event) {
+
+    var result = quizGame.questions.questions.questions[quizGame.current].answers[event.currentTarget.getElementsByTagName("span")[0].innerText].isCorrect;
+
+    if (result) {
+        answerResultContainer.classList.remove("wrong");
+        answerResultContainer.classList.add("correct");
+    } else {
+        answerResultContainer.classList.remove("correct");
+        answerResultContainer.classList.add("wrong");
+    }
+
+    answerResultContainer.innerText = result.toString().toUpperCase();
+
+});
+
+// Next button events 
+nextBtn.addEventListener("click", function () {
+    if (quizGame.current < quizGame.questions.length - 1) {
+        quizGame.current++;
+    }
+    clearElements();
+    renderQuestion();
+});
+
+// Previous button events
+previousBtn.addEventListener("click", function () {
+    if (quizGame.current > 0) {
+        quizGame.current--;
+    }
+    clearElements();
+    renderQuestion();
 });

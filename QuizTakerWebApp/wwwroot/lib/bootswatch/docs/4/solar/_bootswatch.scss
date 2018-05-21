@@ -1,4 +1,4 @@
-// Solar 4.0.0
+// Solar 4.1.1
 // Bootswatch
 
 
@@ -102,6 +102,14 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro" !defau
   @each $color, $value in $theme-colors {
     &-#{$color} {
       background-color: $value;
+    }
+  }
+
+  &-light {
+    &,
+    & a:not(.btn),
+    & .alert-link {
+      color: $body-bg;
     }
   }
 }

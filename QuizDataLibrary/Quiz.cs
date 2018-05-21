@@ -7,10 +7,10 @@ namespace QuizDataLibrary
 {
     public class Quiz
     {
-        //public Quiz()
-        //{
-        //    Questions = new List<Question>();
-        //}
+        public Quiz()
+        {
+            Questions = new List<Question>();
+        }
 
         public int QuizId { get; set; }
         public string Title { get; set; }

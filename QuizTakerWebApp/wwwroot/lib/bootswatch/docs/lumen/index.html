@@ -104,9 +104,7 @@
           </div>
           <div class="col-lg-4 col-md-5 col-sm-6">
             <div class="sponsor">
-              <a href="http://www.shopify.com/?ref=bootswatch">
-                <img src="../_assets/img/shopify-300x250-light@2x.jpg">
-              </a>
+              <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=bootswatchcom" id="_carbonads_js"></script>
             </div>
           </div>
         </div>
@@ -152,7 +150,7 @@
             </div>
 
             <div class="bs-component">
-              <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+              <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#">Navbar</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -763,10 +761,15 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label class="custom-file">
-                    <input type="file" id="file2" class="custom-file-input">
-                    <span class="custom-file-control"></span>
-                  </label>
+                  <div class="input-group mb-3">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="inputGroupFile02">
+                      <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="">Upload</span>
+                    </div>
+                  </div>
                 </div>
               </fieldset>
             </div>
@@ -1036,6 +1039,32 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="bs-component">
+              <div class="alert alert-dismissible alert-primary">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="bs-component">
+              <div class="alert alert-dismissible alert-secondary">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="bs-component">
+              <div class="alert alert-dismissible alert-light">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Heads up!</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it's not super important.
+              </div>
+            </div>
+          </div>
+        </div>
         <div>
           <h2>Badges</h2>
           <div class="bs-component" style="margin-bottom: 40px;">
@@ -1289,42 +1318,42 @@
             <div class="bs-component">
               <div class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Header</div>
-                <div class="card-body text-primary">
+                <div class="card-body">
                   <h4 class="card-title">Primary card title</h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
               </div>
               <div class="card border-secondary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Header</div>
-                <div class="card-body text-secondary">
+                <div class="card-body">
                   <h4 class="card-title">Secondary card title</h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
               </div>
               <div class="card border-success mb-3" style="max-width: 20rem;">
                 <div class="card-header">Header</div>
-                <div class="card-body text-success">
+                <div class="card-body">
                   <h4 class="card-title">Success card title</h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
               </div>
               <div class="card border-danger mb-3" style="max-width: 20rem;">
                 <div class="card-header">Header</div>
-                <div class="card-body text-danger">
+                <div class="card-body">
                   <h4 class="card-title">Danger card title</h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
               </div>
               <div class="card border-warning mb-3" style="max-width: 20rem;">
                 <div class="card-header">Header</div>
-                <div class="card-body text-warning">
+                <div class="card-body">
                   <h4 class="card-title">Warning card title</h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
               </div>
               <div class="card border-info mb-3" style="max-width: 20rem;">
                 <div class="card-header">Header</div>
-                <div class="card-body text-info">
+                <div class="card-body">
                   <h4 class="card-title">Info card title</h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
@@ -1338,7 +1367,7 @@
               </div>
               <div class="card border-dark mb-3" style="max-width: 20rem;">
                 <div class="card-header">Header</div>
-                <div class="card-body text-dark">
+                <div class="card-body">
                   <h4 class="card-title">Dark card title</h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
@@ -1456,7 +1485,7 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
-              <pre></pre>
+              <pre contenteditable></pre>
             </div>
           </div>
         </div>

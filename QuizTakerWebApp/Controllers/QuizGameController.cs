@@ -52,7 +52,8 @@ namespace QuizTaker.Controllers
         [HttpGet("{id}", Name = "Get")]
         public async Task<IActionResult> GetQuiz(int id) //was Quiz Get(int id)
         {
-            var quiz = await _dbContext.Quizzes.FirstOrDefaultAsync(q => q.QuizId == id);
+            var quiz = await _dbContext.Quizzes
+                .FirstOrDefaultAsync(q => q.QuizId == id);
 
             try
             {
