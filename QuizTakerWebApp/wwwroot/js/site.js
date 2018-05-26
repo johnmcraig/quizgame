@@ -1,15 +1,15 @@
 ﻿/* JSON Results from POSTMan
--quizId,
-    -    title,
-    -    author,
-    -    publishDate,
-    -        questions:
--            questionId + quizId,
-    -            content
-    - answers:
--            answerId,
-    -            content,
-    -            isCorrect boolean(true, false)
+quizId,
+    title,
+    author,
+    publishDate,
+  questions:
+        questionId + quizId,
+        content
+  answers:
+         answerId,
+         content,
+         isCorrect boolean(true, false)
 */
 
 var answersContainer = document.getElementById("answers-container"),
@@ -27,12 +27,12 @@ var quizGame = {
 // Get questions from API on page load
 $(document).ready(function () {
 
-    var id = document.getElementById("quizGameId").innerText;
+    var quizId = document.getElementById("quizGameId").innerText;
 
-    var path = "/api/QuizGame/" + id;
+    var path = "/api/QuizGame/" + quizId;
 
     $.getJSON(path, function (data) {
-        quizGame.questions.questions = data;
+        quizGame.questions = data;
         renderQuestion();
     });
 
@@ -41,11 +41,11 @@ $(document).ready(function () {
 // Render out question and answers
 function renderQuestion() {
 
-    questionContent.innerText = quizGame.questions.questions.questions[quizGame.current].questions;
+    questionContent.innerText = quizGame.questions[quizGame.current].questions;
 
     var count = 0;
 
-    for (var answer in quizGame.questions.questions.questions[quizGame.current].answers) {
+    for (var answer in quizGame.questions.[quizGame.current].answers) {
 
 
         var answerLi = document.createElement("li"),
@@ -56,7 +56,7 @@ function renderQuestion() {
         answerPosition.classList.add("hidden");
         answerLi.classList.add("list-group-item");
         answerLi.classList.add("answer-item");
-        answerLi.innerText = quizGame.questions.questions.questions[quizGame.current].answers[answer].content;
+        answerLi.innerText = quizGame.questions[quizGame.current].answers[answer].content;
 
         answerLi.appendChild(answerPosition);
         answersContainer.appendChild(answerLi);
@@ -73,7 +73,7 @@ function clearElements() {
 // On answer click events
 $(document).on('click', ".answer-item", function (event) {
 
-    var result = quizGame.questions.questions.questions[quizGame.current].answers[event.currentTarget.getElementsByTagName("span")[0].innerText].isCorrect;
+    var result = quizGame.questions[quizGame.current].answers[event.currentTarget.getElementsByTagName("span")[0].innerText].isCorrect;
 
     if (result) {
         answerResultContainer.classList.remove("wrong");

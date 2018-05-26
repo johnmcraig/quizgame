@@ -7,11 +7,11 @@ $(document).ready(function () {
 });
 
 // The actual path as an uri then call AJAX then bind the data to a list element
-const apiUri = "/api/QuizGame/";
+const uri = "/api/QuizGame/";
 let quizzes = null;
 
 $(document).ready(function () {
-    $.getJSON(apiUri)
+    $.getJSON(uri)
         .done(function (data) {
             $.each(data, function (key, quiz) {
                 $('<li>', { text: formatQuiz(quiz) }).appendTo($('#quiz-title'));
@@ -22,7 +22,7 @@ $(document).ready(function () {
 // find quiz by id :: Url = api/QuizGame/id
 function find() {
     var id = $('#quizId').val();
-    $.getJSON(apiUri + '/' + id)
+    $.getJSON(uri + '/' + id)
         .done(function (data) {
             $('#quiz-title').text(formatItem(data));
         })
