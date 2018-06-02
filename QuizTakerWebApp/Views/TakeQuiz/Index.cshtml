@@ -1,34 +1,39 @@
-﻿@{
+﻿@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+    <script src="~/js/app.js"></script>
+}
+
+@{
     ViewData["Title"] = "Index";
 }
 
 <h2>Quiz Game</h2>
 
-<input id="get-btn" type="button" class="btn btn-default" value="Get All Quizzes" />
+<div id="index-page">
 
-<input id="clear-btn" type="button" class="btn btn-danger" value="Clear List" />
+    <div>{{ new Date().getFullYear() }}</div>
 
-<div class="well-lg" id="quiz-title"></div>
+    <div id="quiz-id" class="well">Quiz Id: {{ quiz.quizId }} Catagory: {{ quiz.title }} Author: {{ quiz.author }} Date: {{ quiz.publishDate }}</div>
 
-<ul id="ulQuizzes"></ul>
+    <div id="question-content" class="well" v-for="q in questions">Question: {{ q.content }}</div>
 
-@*<span id="quizGameId" class="hidden"></span>
+    <ul id="answers-container" class="answer-item list-group" v-for="a in answers">{{ a.content }} {{ a.isCorrect }}</ul>
 
-    <div id="question-content" class="well"></div>
+    <div id="answer-result-contianer" class="container">Was your selected Answer correct?</div>
 
-    <ul id="answers-container" class="list-group"></ul>
+</div>
 
-    <div id="answer-result-contianer" class="container"></div>
+<br />
 
-    <br />
+<button id="previous-btn" typpe="button" class="btn btn-primary" v-on:click="prevQuiz">Previous Quiz</button>
+<button id="next-btn" type="button" class="btn btn-primary" v-on:click="nextQuiz">Next Quiz</button>
 
-    <button id="previous-button" class="btn btn-sm btn-sm game-btn">Previous</button>
-    <button id="next-button" class="btn btn-sm btn-sm game-btn">Next</button>*@
+<br />
+<hr />
 
 @Html.ActionLink("Back Home", "Index", "Home")
 
 
-@section Scripts {
-    <script src="~/js/app.js"></script>
-    @*<script src="~/js/site.js"></script>*@
-}
+

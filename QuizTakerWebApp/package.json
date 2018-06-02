@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+  "devDependencies": {
+    "vue": "2.5.16",
+    "axios": "0.18.0",
+    "@fortawesome/fontawesome-free-webfonts": "1.0.9",
+    "lodash": "4.17.10"
+  }
+}
