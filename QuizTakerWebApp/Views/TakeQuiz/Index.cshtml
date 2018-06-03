@@ -1,39 +1,39 @@
-﻿@section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
-    <script src="~/js/app.js"></script>
-}
-
+﻿
 @{
     ViewData["Title"] = "Index";
 }
 
 <h2>Quiz Game</h2>
 
-<div id="index-page">
-
-    <div>{{ new Date().getFullYear() }}</div>
-
-    <div id="quiz-id" class="well">Quiz Id: {{ quiz.quizId }} Catagory: {{ quiz.title }} Author: {{ quiz.author }} Date: {{ quiz.publishDate }}</div>
-
-    <div id="question-content" class="well" v-for="q in questions">Question: {{ q.content }}</div>
-
-    <ul id="answers-container" class="answer-item list-group" v-for="a in answers">{{ a.content }} {{ a.isCorrect }}</ul>
-
-    <div id="answer-result-contianer" class="container">Was your selected Answer correct?</div>
-
+<div id="app">
+    <div class="container">
+        <div class="row">
+            <div id="quiz-id" class="col col-lg-12 well-lg">
+                <h5>{{ new Date().getFullYear() }}</h5>
+                <p>Quiz #: {{ quiz[question].quizId }}</p>
+                <p>Catagory: {{ quiz[question].title }}</p>
+                <p>Author: {{ quiz[question].author }}</p>
+                <p>Date: {{ quiz[question].publishDate }}</p>
+            </div>
+            <div id="question-content" class="col col-lg-12" v-for="q in quiz[question].questions">
+                <h4>Question: {{ q.content }}</h4>
+                <ol id="answers-container" class="list-group">
+                    <li class="answer-item" v-for="a in q.answers">{{ a.content +' - '+ a.isCorrect }}</li>
+                </ol>
+            </div>
+            <div id="answer-result-contianer" class="container">Was your selected Answer correct?</div>
+        </div>
+    </div>
+    <br />
+    <button type="button" class="btn btn-primary" v-on:click="prevQuiz">Previous Quiz</button>
+    <button type="button" class="btn btn-primary" v-on:click="nextQuiz">Next Quiz</button>
 </div>
-
-<br />
-
-<button id="previous-btn" typpe="button" class="btn btn-primary" v-on:click="prevQuiz">Previous Quiz</button>
-<button id="next-btn" type="button" class="btn btn-primary" v-on:click="nextQuiz">Next Quiz</button>
-
 <br />
 <hr />
-
 @Html.ActionLink("Back Home", "Index", "Home")
 
-
-
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="~/js/app.js"></script>
+}

@@ -1,80 +1,80 @@
-﻿$(document).ready(function () {
+﻿//$(document).ready(function () {
 
-    var ulQuizzes = $('#ulQuizzes');
-    var ulQuestions = $('#ulQuestions');
-    let uri = 'api/QuizGame';
+//    var ulQuizzes = $('#ulQuizzes');
+//    var ulQuestions = $('#ulQuestions');
+//    let uri = 'api/QuizGame';
 
-    $.getJSON(uri, function (data) {
-        $.each(data.quizId, function (i, title) {
-            console.log(title);
-        });
-    });
+//    $.getJSON(uri, function (data) {
+//        $.each(data.quizId, function (i, title) {
+//            console.log(title);
+//        });
+//    });
 
-    $('#get-btn').click(function () {
-        $.ajax({
-            type: 'GET',
-            url: 'api/QuizGame',
-            dataType: 'json',
-            success: function (data) {
+//    $('#get-btn').click(function () {
+//        $.ajax({
+//            type: 'GET',
+//            url: 'api/QuizGame',
+//            dataType: 'json',
+//            success: function (data) {
 
-                ulQuizzes.empty();
+//                ulQuizzes.empty();
 
-                $.each(data, function (index, val) {
-                    var quizId = val.quizId;
-                    var quizTitle = val.title;
-                    var authName = val.author;
-                    var pubDate = val.publishDate;
+//                $.each(data, function (index, val) {
+//                    var quizId = val.quizId;
+//                    var quizTitle = val.title;
+//                    var authName = val.author;
+//                    var pubDate = val.publishDate;
 
-                    var questions = val.questions;
+//                    var questions = val.questions;
 
                     
-                    var answerId = val.answerId;
-                    var quizQuestion = val.questions;
-                    var quizAnswer = val.answers;
+//                    var answerId = val.answerId;
+//                    var quizQuestion = val.questions;
+//                    var quizAnswer = val.answers;
 
-                    ulQuizzes.append('<li>' + quizId + ' ' + quizTitle + ' ' + authName + ' ' + pubDate + '</li>');
+//                    ulQuizzes.append('<li>' + quizId + ' ' + quizTitle + ' ' + authName + ' ' + pubDate + '</li>');
 
-                    $.each(questions, function (index, val) {
-                        ulQuestions.append('<li>' + questions + ' ' + '</li>');
-                    });
+//                    $.each(questions, function (index, val) {
+//                        ulQuestions.append('<li>' + questions + ' ' + '</li>');
+//                    });
 
 
-                });
-            }
-        });
-    });
+//                });
+//            }
+//        });
+//    });
 
-    $('#clear-btn').click(function () {
-        ulQuizzes.empty();
-        questionLi.empty();
-    });
+//    $('#clear-btn').click(function () {
+//        ulQuizzes.empty();
+//        questionLi.empty();
+//    });
 
-    $('#next-btn').click(function () {
+//    $('#next-btn').click(function () {
 
-    });
+//    });
 
-    $('#previous-btn').click(function () {
+//    $('#previous-btn').click(function () {
 
-    });
+//    });
 
-});
-
-// Get questions from API on page load 
-$(document).ready(function () {
-    var quizId = document.getElementById("quizId").innerText;
-    var path = "/api/QuizGame/" + quizId;
-
-    $.getJSON(path, function (data) {
-        game.questions = data;
-        renderQuestion();
-    });
-});
+//});
 
 /*
  *
  * Original jQuery that is no longer used but may be usefull later
  * 
  */
+
+// Get questions from API on page load 
+//$(document).ready(function () {
+//    var quizId = document.getElementById("quizId").innerText;
+//    var path = "/api/QuizGame/" + quizId;
+
+//    $.getJSON(path, function (data) {
+//        game.questions = data;
+//        renderQuestion();
+//    });
+//});
 
 //// Game data object 
 //var game = {
