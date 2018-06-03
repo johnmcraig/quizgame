@@ -18,7 +18,7 @@
             <div id="question-content" class="col col-lg-12" v-for="q in quiz[question].questions">
                 <h4>Question: {{ q.content }}</h4>
                 <ol id="answers-container" class="list-group">
-                    <li class="answer-item" v-for="a in q.answers">{{ a.content +' - '+ a.isCorrect }}</li>
+                    <li class="answer-item" v-for="a in q.answers" v-on:click="">{{ a.content +' - '+ a.isCorrect }}</li>
                 </ol>
             </div>
             <div id="answer-result-contianer" class="container">Was your selected Answer correct?</div>
