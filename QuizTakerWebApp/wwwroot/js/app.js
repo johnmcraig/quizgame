@@ -10,7 +10,7 @@
     },
     methods: {
         nextQuiz: function () {
-            this.question++
+            this.question++ //suggested to name qIdIndex to rep number of array
             this.answered = false
             this.correct = null
         },
