@@ -1,4 +1,4 @@
-# QuizTaker
+# Quiz Game (Formally QuizTaker)
 A web application using SQL, ASP.NET Core 2.0, Enitity Framework Core, Vue.js, and the Repository pattern.
 
 ## Function
