@@ -27,7 +27,7 @@ namespace QuizTaker.Controllers
 
         // GET: api/QuizGame
         [HttpGet]
-        public async Task<IActionResult> GetQuizzes()  //was IEnumerable<string> Get()
+        public async Task<IActionResult> GetQuizzes()
         {
             var quizzes = await _dbContext.Quizzes
                 .Include(q => q.Questions)
@@ -36,7 +36,6 @@ namespace QuizTaker.Controllers
      
             try
             {
-                //return _quizRepo.ListAllQuizzes();
                 return Ok(_quizRepo.ListAllQuizzes());
             }
             catch (Exception ex)
@@ -50,7 +49,7 @@ namespace QuizTaker.Controllers
 
         // GET: api/QuizGame/5
         [HttpGet("{id}", Name = "Get")]
-        public async Task<IActionResult> GetQuiz(int id) //was Quiz Get(int id)
+        public async Task<IActionResult> GetQuiz(int id)
         {
             var quiz = await _dbContext.Quizzes
                 .FirstOrDefaultAsync(q => q.QuizId == id);
@@ -64,8 +63,6 @@ namespace QuizTaker.Controllers
                 _logger.LogError($"Failed to find quiz: {ex}");
                 return BadRequest("Failed to get quiz");
             }
-            
-            //return _quizRepo.GetById(id);
         }
         
         // POST: api/QuizGame
